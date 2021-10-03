@@ -12,19 +12,21 @@ import { DataService } from 'src/app/services/data.service';
 export class AnatomicalStructuresComponent implements OnInit {
 
 
-  row!:Row;
+  mergedRows!:Row;
+  anatomical_structures!: Array<Structure>
   constructor(private dataService: DataService) { }
   
   ngOnInit(): void {
-    this.dataService.getRows().subscribe(this.getStructures, this.errorHandle);
+    this.dataService.getRows().subscribe(this.getStructures.bind(this), this.errorHandle);
   }
 
   getStructures(body:any){
-    let anatomical_structures: Array<Structure> = body.data.map((row:Row) => row.anatomical_structures);
+    this.anatomical_structures = body.data.flatMap((row:Row) => row.anatomical_structures);
+    console.log(this.anatomical_structures);
     let biomarkers: Array<Structure> = body.data.map((row:Row) => row.biomarkers);
     let cell_types: Array<Structure> = body.data.map((row:Row) => row.cell_types);
-    this.row = {anatomical_structures, biomarkers, cell_types};
-    console.log(this.row)
+    this.mergedRows = {anatomical_structures: this.anatomical_structures, biomarkers, cell_types};
+    
   }
 
   errorHandle(err:Error){
