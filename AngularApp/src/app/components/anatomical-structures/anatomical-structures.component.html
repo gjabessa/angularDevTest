@@ -4,16 +4,25 @@
 <div class="d-flex gap-5 justify-content-center py-3">
     <div class="list-group mx-0 w-50" >
         
-        <li class="list-group-item" *ngFor="let structure of anatomical_structures.slice(0,anatomical_structures.length/2)">
+        <ul *ngFor="let structure of anatomical_structures.slice(0,anatomical_structures.length/2)">
+          <li class="list-group-item" >
             {{structure.name}}
-        </li>
+          </li>  
+          <li class="list-group-item">{{structure.id}}</li>
+                
+        
+        </ul>
+       
         
     </div>
   
     <div class="list-group mx-0 w-50">
-        <li class="list-group-item" *ngFor="let structure of anatomical_structures.slice(anatomical_structures.length/2,anatomical_structures.length)">
-            {{structure.name}}
-        </li>
+        <ul *ngFor="let structure of anatomical_structures.slice(anatomical_structures.length/2,anatomical_structures.length)">
+            <li class="list-group-item" >
+                {{structure.name}}
+              </li>  
+              <li class="list-group-item">{{structure.id}}</li>
+            </ul>
     </div>
   </div>
 </div>

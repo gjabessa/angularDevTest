@@ -21,8 +21,9 @@ export class AnatomicalStructuresComponent implements OnInit {
   }
 
   getStructures(body:any){
-    this.anatomical_structures = body.data.flatMap((row:Row) => row.anatomical_structures);
-    console.log(this.anatomical_structures);
+    let filtered: any = [...body.data.flatMap((row:Row) => row.anatomical_structures)]
+    this.anatomical_structures = filtered.filter((structure:any,i:number,array:any) => array.map((s:any)=>s.name).indexOf(structure.name) === i);
+    console.log(this.anatomical_structures)
     let biomarkers: Array<Structure> = body.data.map((row:Row) => row.biomarkers);
     let cell_types: Array<Structure> = body.data.map((row:Row) => row.cell_types);
     this.mergedRows = {anatomical_structures: this.anatomical_structures, biomarkers, cell_types};
