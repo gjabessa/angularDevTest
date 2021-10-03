@@ -1,4 +1,4 @@
-enum BM_TYPE {
+export enum BM_TYPE {
     G = 'gene',
     P = 'protein'
     }
