@@ -17,5 +17,10 @@ export class DataService {
     return this.http.get<Row>(environment.baseUrl);
   }
 
+  getDetails(id:String):any {
+    console.log(environment.secondBaseUrl+id)
+    return this.http.get(environment.secondBaseUrl+id);
+  }
+
 
 }
