@@ -1,6 +1,7 @@
 # Descriptions
 
 I experimented a little with it. Although haven't implemented it on this project, I support the use of ngRx in state management and will see the trade offs as compared to traditional methods such as rxJs/ngRx.
+
 I divided the data into two sections on the template side. 
 
 # AngularApp
