@@ -17,13 +17,16 @@ export class AnatomicalStructuresComponent implements OnInit {
   anatomical_structures!: Array<Structure>
   detailToDisplay!: any;
   closeResult = '';
+  message = '';
   constructor(private dataService: DataService,private modalService: NgbModal) { }
   
   ngOnInit(): void {
+    this.message = "Loading ...";
     this.dataService.getRows().subscribe(this.getStructures.bind(this), this.errorHandle);
   }
 
   getStructures(body:any){
+    this.message = '';
     let filtered: any = [...body.data.flatMap((row:Row) => row.anatomical_structures)]
     this.anatomical_structures = filtered.filter((structure:any,i:number,array:any) => array.map((s:any)=>s.name).indexOf(structure.name) === i);
     
